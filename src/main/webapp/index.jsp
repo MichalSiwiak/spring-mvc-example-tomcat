@@ -85,7 +85,7 @@
     <div class="container d-flex flex-column">
         <div class="row my-auto">
             <div class="col-md-12 text-white">
-                <img class="m-0 mb-0" src="./resources/img/now-logo.png" width="400">
+                <img class="m-0 mb-0 img-fluid" alt="..." src="./resources/img/now-logo.png" width="400">
                 <h3 class="mb-5">Free open source projects present different java solutions using spring, hibernate and
                     other popular frameworks.</h3>
             </div>
