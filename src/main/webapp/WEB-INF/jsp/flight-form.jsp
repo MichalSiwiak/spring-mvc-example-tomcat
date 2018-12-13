@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="resources/css/now-ui-kit.css" type="text/css">
     <link rel="icon" href="resources/img/favicon.png">
     <!-- PAGE scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="resources/js/functions.js"></script>
+    <script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="http://cdn.zingchart.com/angular/zingchart-angularjs.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -29,7 +33,7 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
 </head>
-<body class="bg-light text-dark" style="">
+<body ng-app="myApp" ng-controller="myController"  class="bg-light text-dark" style="">
 <div class="collapse" id="navbarHeader">
     <div class="container">
         <div class="row">
@@ -97,53 +101,57 @@
         </div>
     </div>
 </div>
-<div class="row py-4">
+
+<div class="row my-3">
     <div class="container">
-        <h2 class="text-center">Project Description</h2>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
+        <div class="row">
+            <div class="offset-md-2 col-md-8" style=""><h4>to find nearest flight enter geographic coordinates in
+                decimal format e.g. for Warsaw latitude = 52.2297700 and longitude = 21.0117800</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form ng-submit="checkFlight()">
+            <div class="row">
+                <div class="col-md-4 offset-md-2"><input type="text" required="true"
+                                                         pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)"
+                                                         class="form-control text-center" placeholder="Latitude"
+                                                         ng-model="form.latitude"></div>
+                <div class="col-md-4"><input type="text" required="true"
+                                             pattern="\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$"
+                                             class="form-control text-center" id="inputError" placeholder="Longitude"
+                                             ng-model="form.longitude"></div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12 py-4">
+                    <button type="submit" class="btn btn-primary px-1 py-2">Find Nearest Flight</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2" style="">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Icao24<span
+                            class="badge badge-pill badge-dark">{{jsondata.icao24}}</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Callsign<span
+                            class="badge badge-pill badge-dark">{{jsondata.callsign}}</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Origin Country<span
+                            class="badge badge-pill badge-dark">{{jsondata.origin_country}}</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="row my-4">
+    <div class="container p-0">
+
+    </div>
+</div>
+
+
 <footer class="py-5 bg-dark text-muted">
     <div class="container">
         <p class="float-right">
